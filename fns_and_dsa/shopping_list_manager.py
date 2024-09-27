@@ -8,7 +8,9 @@ def main():
     shopping_list = []
     while True:
         display_menu()
-        choice = input("Enter your choice: ")
+        choice = input("Enter your choice (1-4): ")
+        if choice.isdigit() and int(choice) in [1, 2, 3, 4]:
+            choice = int(choice)
         if choice == "1":
             item = input("Enter the item name to add:  ")
             shopping_list.append(item)
