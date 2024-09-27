@@ -5,46 +5,46 @@ def display_menu():
     print("3. View List")
     print("4. Exit")
 
+def get_choice():
+    choice = input("Enter your choice (1-4): ")
+    if choice.isdigit() and int(choice) in [1, 2, 3, 4]:
+        return int(choice)
+    else:
+        print("Invalid choice. Please enter a number between 1 and 4.")
+        return None
+
 def main():
-    shopping_list = []  
+    shopping_list = []
     while True:
-        display_menu() 
-        choice = input("Enter your choice (1-4): ")  
-
-        # التأكد من أن الإدخال هو عدد صحيح
-        if choice.isdigit() and int(choice) in [1, 2, 3, 4]:
-            choice = int(choice)  # تحويل الإدخال إلى عدد صحيح
-        else:
-            print("Invalid choice. Please enter a number between 1 and 4.")  # رسالة خطأ إذا كانت الإدخال غير صالح
-            continue  # العودة إلى بداية الحلقة
-
+        display_menu()
+        choice = get_choice()
+        if choice is None:
+            continue
+        
         if choice == 1:
-            # إضافة عنصر
             item = input("Enter the item name to add: ")
-            shopping_list.append(item)  # إضافة العنصر إلى القائمة
+            shopping_list.append(item)
             print(f"'{item}' has been added to the shopping list.")
         
         elif choice == 2:
-            # إزالة عنصر
             item = input("Enter the item name to remove: ")
             if item in shopping_list:
-                shopping_list.remove(item)  # إزالة العنصر من القائمة
+                shopping_list.remove(item)
                 print(f"'{item}' has been removed from the shopping list.")
             else:
-                print(f"'{item}' not found in the shopping list.")  # رسالة إذا لم يكن العنصر موجود
-
+                print(f"'{item}' not found in the shopping list.")
+        
         elif choice == 3:
-            # عرض قائمة التسوق
             print("Current Shopping List:")
-            if shopping_list:  # تحقق مما إذا كانت القائمة غير فارغة
+            if shopping_list:
                 for item in shopping_list:
-                    print(f"- {item}")  # طباعة كل عنصر في القائمة
+                    print(f"- {item}")
             else:
-                print("The shopping list is empty.")  # رسالة إذا كانت القائمة فارغة
+                print("The shopping list is empty.")
         
         elif choice == 4:
-            print("Goodbye!")  # رسالة وداع
-            break  # إنهاء البرنامج
+            print("Goodbye!")
+            break
 
 if __name__ == "__main__":
-    main()  # بدء البرنامج
+    main()
